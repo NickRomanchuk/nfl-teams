@@ -45,12 +45,12 @@ function App() {
         <Col className="teams d-flex flex-column">
           <TeamContext.Provider value={selectedTeams.homeTeam}>
             <Row className="top">
-              <TeamDisplay home={true}/>
+              <TeamDisplay team={selectedTeams.homeTeam} home={true}/>
             </Row>
           </TeamContext.Provider>
           <TeamContext.Provider value={selectedTeams.awayTeam}>
             <Row className="bottom">
-              <TeamDisplay home={false}/>
+              <TeamDisplay team={selectedTeams.awayTeam} home={false}/>
             </Row>
           </TeamContext.Provider>
         </Col>
