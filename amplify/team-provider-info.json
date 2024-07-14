@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nflteams-dev-b6d5d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::121290183657:role/amplify-nflteams-dev-b6d5d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::121290183657:role/amplify-nflteams-dev-b6d5d-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nflteams-dev-b6d5d-deployment",
+      "UnauthRoleName": "amplify-nflteams-dev-b6d5d-unauthRole",
+      "StackName": "amplify-nflteams-dev-b6d5d",
+      "StackId": "arn:aws:cloudformation:us-east-1:121290183657:stack/amplify-nflteams-dev-b6d5d/554e20e0-33dc-11ef-bfe1-0affcff57b31",
+      "AmplifyAppId": "d3db6eilvrc7ka"
+    },
+    "categories": {
+      "api": {
+        "nflteams": {}
+      }
+    }
+  }
+}

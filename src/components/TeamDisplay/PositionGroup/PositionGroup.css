@@ -1,0 +1,24 @@
+.position-column {
+    height: 100%;
+    padding: 2px;
+    align-items: space-between;
+}
+
+.group-label {
+    font-size: 12px;
+    font-weight: bolder;
+    margin: 2px 0;
+    width: 80%;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 2.6px;
+}
+
+.player-cards-div {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    width: 100%;
+}

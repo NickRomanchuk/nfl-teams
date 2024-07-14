@@ -1,0 +1,47 @@
+.display {
+    background-image: url('../../../public/images/Vertical-American-Football-Field-Wallpaper-Mural.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-shadow: rgba(255, 255, 255, 0.5) 6px 6px 11px;
+}
+
+.logo-col {
+    position: absolute;
+    padding: 0;
+}
+
+.team-logo {
+    width: 100%;
+    padding: 1.5vh 0;
+}
+
+.toggle {
+    min-width: 120px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.off-def-buttons {
+    width: 100%;
+    padding: 1.5vh 0;
+}
+
+.off-def {
+    border: 2px solid black;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.8) 3px 5px 5px;
+}
+
+.off-def:hover {
+    border: 2px solid black !important;
+}
+
+.checked {
+    background-color: white !important;
+    color: black !important;
+}
