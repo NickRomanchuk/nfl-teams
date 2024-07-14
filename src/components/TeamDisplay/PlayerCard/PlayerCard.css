@@ -43,6 +43,15 @@
     left: 0;
 }
 
+.playerExperience {
+    position: absolute;
+    font-size: 14px;
+    color: white;
+    font-weight: bolder;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+}
 .playerOverall {
     position: absolute;
     padding: 0;
@@ -52,6 +61,18 @@
     font-size: 14px;
     font-weight: bolder;
 }
+
+.playerStatus {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    right: 2px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: red;
+}
+
 
 .backgroundImg {
     max-width: 100%;

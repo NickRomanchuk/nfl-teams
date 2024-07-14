@@ -14,6 +14,11 @@ function PlayerCard(props) {
             const response = await fetch(url);
             const json = await response.json();
             json.overall = ratings.find((player) => player["name"] === json["athlete"]["displayName"])
+            if (json["athlete"]["displayExperience"] == "Rookie") {
+                json["athlete"]["displayExperience"] = "Rk"
+            } else {
+                json["athlete"]["displayExperience"] = json["athlete"]["displayExperience"].split(" ")[0]
+            }
             //console.log(json)
             setPlayerData(json)
         } catch (error) {
@@ -40,9 +45,15 @@ function PlayerCard(props) {
                         <p className="playerNumber">
                             {playerData["athlete"]["jersey"] ? `#${playerData["athlete"]["jersey"]}` : 'NA'}
                         </p>
+                        <p className="playerExperience">
+                            {playerData["athlete"]["displayExperience"]}
+                        </p>
                         <p className="playerOverall" style={{color: `${team.color}`}}>
                             {playerData["overall"] ? playerData["overall"]["overall"] : "NA"}
-                        </p>  
+                        </p>
+                        <p className="playerStatus">
+                            {playerData["athlete"]["injuries"] ? playerData["athlete"]["injuries"][0]["type"]["abbreviation"] : ""}
+                        </p>
                     </div>
                 </div>
             }
