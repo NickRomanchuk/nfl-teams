@@ -9,7 +9,8 @@ import { listTeams } from './graphql/queries';
 export const TeamContext = createContext(null);
 
 function App() {
-  const [selectedTeams, setSelectedTeams] = useState({homeTeam: "", awayTeam: ""});
+  const [selectedTeams, setSelectedTeams] = useState({homeTeam: null, 
+                                                      awayTeam: null});
   const [teams, setTeams] = useState([]);
 
   const client = generateClient();
@@ -24,7 +25,9 @@ function App() {
     });
   }
   
-  useEffect(()=>{getTeams();}, [])
+  useEffect(()=>{
+    getTeams();
+  }, [])
 
   return (
     <div className="App">
@@ -34,7 +37,7 @@ function App() {
             (
               <MenuButton selectedTeams={selectedTeams}
                           setSelectedTeams={setSelectedTeams}
-                          name={team.name}
+                          team={team}
                           key={key}/>
             )
           )}

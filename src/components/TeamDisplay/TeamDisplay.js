@@ -3,42 +3,33 @@ import "./TeamDisplay.css"
 import { useContext, useEffect, useState } from "react";
 import { TeamContext } from "../../App";
 import { teamUnitsRadios } from "../../constants/constants";
-import { getOneTeam } from "../utils/helperFunctions";
 import DepthChart from "./DepthChart/DepthChart";
 
 function TeamDisplay(props) {
-    const teamName = useContext(TeamContext);
-    const [team, setTeam] = useState(null);
+    const team = useContext(TeamContext);
     const [offDef, setOffDef] = useState("")
     const [roster, setRoster] = useState(null)
 
     async function getDepthChart() {
-        if (team) {
-            const url = await `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.espnID}/depthcharts`;
-            try {
-              const response = await fetch(url);
-              const json = await response.json();
-              //console.log(json);
-              setRoster(json.depthchart)
-            } catch (error) {
-              console.error(error.message);
-            }
+        const url = await `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.espnID}/depthcharts`;
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+            //console.log(json);
+            setRoster(json.depthchart)
+        } catch (error) {
+            console.error(error.message);
         }
     }
 
     useEffect(()=>{
-        if (teamName) {
-            getOneTeam(teamName, setTeam);
+        if (team) {
+            getDepthChart()
             setOffDef("Offense")
         } else {
             setOffDef("")
             setRoster(null)
-            setTeam(null)
         }
-    }, [teamName])
-    
-    useEffect(()=>{
-        getDepthChart();
     }, [team])
          
     return (
@@ -47,8 +38,8 @@ function TeamDisplay(props) {
 
                 <Col xs={2} md={1} className="logo-col">
                     {team && <Image className="team-logo"
-                                        src={"images/"+teamName.toLowerCase().replace(/\s+/g, '-')+"-logo-transparent.png"}
-                                        alt={`${teamName} logo`} />}
+                                        src={"images/"+team.name.toLowerCase().replace(/\s+/g, '-')+"-logo-transparent.png"}
+                                        alt={`${team.name} logo`} />}
                 </Col>
 
                 {roster && 

@@ -1,13 +1,11 @@
 import { TeamContext } from "../../../App";
-import { getOneTeam } from "../../utils/helperFunctions";
 import { RatingsContext } from "../DepthChart/DepthChart";
 import "./PlayerCard.css"
 import { useContext, useEffect, useState } from "react";
 
 function PlayerCard(props) {
     const ratings = useContext(RatingsContext);
-    const teamName = useContext(TeamContext);
-    const [team, setTeam] = useState(null);
+    const team = useContext(TeamContext);
     const [playerData, setPlayerData] = useState(null)
 
     async function getPlayerData() {
@@ -28,14 +26,11 @@ function PlayerCard(props) {
         if (props.playerId) {
             getPlayerData();
         }
-        if (teamName) {
-            getOneTeam(teamName, setTeam);
-        }
     }, [props])
 
     return (
         <>
-            {playerData && team &&
+            {playerData && team && ratings &&
                 <div className="playerCard" style={{top: `${props.index * (35 / (props.length-1))}%`, 
                                                     backgroundImage: `linear-gradient(120deg, ${team.color} 0%, #FFFFFF 100%)`}}>
                     <div className="playerHeader" style={{backgroundColor: `${team.color}`}}>

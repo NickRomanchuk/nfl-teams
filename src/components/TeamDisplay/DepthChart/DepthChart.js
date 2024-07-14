@@ -2,7 +2,6 @@ import {Col, Row} from "react-bootstrap";
 import "./DepthChart.css"
 import PostitionGroup from "../PositionGroup/PositionGroup";
 import { createContext, useEffect, useState } from "react";
-import { RotatingLines } from "react-loader-spinner";
 
 export const RatingsContext = createContext()
 
@@ -38,6 +37,7 @@ function DepthChart(props) {
         try {
           let players = await accessMaddenAPI("https://ratings-api.ea.com/v2/entities/m24-ratings?limit=1000")
           players = players.concat(await accessMaddenAPI("https://ratings-api.ea.com/v2/entities/m24-ratings?offset=1000"))
+          //console.log(players)
           setRatings(players)
         } catch(err) {
           console.log(err);
@@ -50,7 +50,7 @@ function DepthChart(props) {
 
     return (
         <>
-        {ratings ?
+        {ratings &&
             <RatingsContext.Provider value={ratings} >
                 {props.isOff ? 
                     <Col className="team-col">
@@ -151,16 +151,6 @@ function DepthChart(props) {
                     </>
                 }
             </RatingsContext.Provider>
-        :
-        <Col className="team-col d-flex align-items-center justify-content-center flex-column">
-            <RotatingLines
-                visible={true}
-                strokeWidth="5"
-                strokeColor="white"
-                animationDuration="0.75"
-                ariaLabel="rotating-lines-loading"
-            />
-            </Col>
         }
         </>
     )
