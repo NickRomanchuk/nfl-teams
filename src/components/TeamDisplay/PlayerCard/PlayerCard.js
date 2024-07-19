@@ -1,10 +1,9 @@
-import { TeamContext } from "../../../App";
-import { RatingsContext } from "../DepthChart/DepthChart";
+import { MaddenRatingsContext, TeamContext } from "../../../App";
 import "./PlayerCard.css"
 import { useContext, useEffect, useState } from "react";
 
 function PlayerCard(props) {
-    const ratings = useContext(RatingsContext);
+    const ratings = useContext(MaddenRatingsContext);
     const team = useContext(TeamContext);
     const [playerData, setPlayerData] = useState(null)
 
@@ -25,7 +24,6 @@ function PlayerCard(props) {
             console.error(error.message);
         }
     }
-
 
     useEffect(() => {
         if (props.playerId) {

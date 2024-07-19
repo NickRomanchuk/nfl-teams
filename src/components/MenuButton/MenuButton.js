@@ -2,23 +2,22 @@ import { Button, Image } from "react-bootstrap";
 import "./MenuButton.css"
 import { useState } from "react";
 
-function MenuButton(ButtonProps) {
+function MenuButton({teamData, selectedTeams, setSelectedTeams}) {
     const [selected, setSelected] = useState("");
 
     function handleClick() {
-        
         if (selected == "home") {
-            ButtonProps.setSelectedTeams({...ButtonProps.selectedTeams, homeTeam: null})
+            setSelectedTeams({...selectedTeams, homeTeam: null})
             setSelected("")
         } else if (selected == "away") {
-            ButtonProps.setSelectedTeams({...ButtonProps.selectedTeams, awayTeam: null})
+            setSelectedTeams({...selectedTeams, awayTeam: null})
             setSelected("")
         } else {
-            if (!ButtonProps.selectedTeams.homeTeam) {
-                ButtonProps.setSelectedTeams({...ButtonProps.selectedTeams, homeTeam: ButtonProps.team})
+            if (!selectedTeams.homeTeam) {
+                setSelectedTeams({...selectedTeams, homeTeam: teamData})
                 setSelected("home")
-            } else if (!ButtonProps.selectedTeams.awayTeam) {
-                ButtonProps.setSelectedTeams({...ButtonProps.selectedTeams, awayTeam: ButtonProps.team})
+            } else if (!selectedTeams.awayTeam) {
+                setSelectedTeams({...selectedTeams, awayTeam: teamData})
                 setSelected("away")
             }
         }
@@ -27,12 +26,12 @@ function MenuButton(ButtonProps) {
     return (
         <div className="button-containter">
             <Button className={"team-button " + selected} 
-                    style={{backgroundImage: `linear-gradient(120deg, ${ButtonProps.team.color} 0%, #FFFFFF 100%)`}} 
-                    value={ButtonProps.team.name} 
+                    style={{backgroundImage: `linear-gradient(120deg, ${teamData.color} 0%, #FFFFFF 100%)`}} 
+                    value={teamData.name} 
                     onClick={handleClick}>
                 <Image className="button-logo" 
-                    src={"images/"+ButtonProps.team.name.toLowerCase().replace(/\s+/g, '-')+"-logo-transparent.png"}
-                    alt={`${ButtonProps.team.name} Logo`}
+                    src={"images/"+teamData.name.toLowerCase().replace(/\s+/g, '-')+"-logo-transparent.png"}
+                    alt={`${teamData.name} Logo`}
                     fluid/>
             </Button>
         </div>
