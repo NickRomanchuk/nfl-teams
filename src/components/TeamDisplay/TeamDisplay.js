@@ -1,26 +1,15 @@
 import { ButtonGroup, Col, Image, Row, ToggleButton } from "react-bootstrap";
 import "./TeamDisplay.css"
 import { useContext, useEffect, useState } from "react";
-import { teamUnitsRadios } from "../../constants/constants";
+import { depthChartsEndpoints, teamUnitsRadios } from "../../constants/constants";
 import DepthChart from "./DepthChart/DepthChart";
 import { TeamContext } from "../../App";
 
 function TeamDisplay({ home }) {
-    const [roster, setRoster] = useState(null);
-    const [offDef, setOffDef] = useState("");
     const team = useContext(TeamContext);
 
-    async function getDepthChart() {
-        const url = `https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/${team.espnID}/depthcharts`;
-        try {
-            const response = await fetch(url);
-            const json = await response.json();
-            setRoster(json.depthchart)
-        } catch (error) {
-            console.error(`Could not get depth chart from ESPN`, error.message);
-        }
-    }
-
+    const [roster, setRoster] = useState(null);
+    const [offDef, setOffDef] = useState("");
     useEffect(()=>{
         if (team) {
             getDepthChart()
@@ -30,6 +19,17 @@ function TeamDisplay({ home }) {
             setOffDef("")
         }
     }, [team])
+    
+    async function getDepthChart() {
+        const url = depthChartsEndpoints[0] + team.espnID + depthChartsEndpoints[1];
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+            setRoster(json.depthchart)
+        } catch (error) {
+            console.error(`Could not get depth chart from ESPN`, error.message);
+        }
+    }
          
     return (
         <Row className = "display" style = {home ? {backgroundPosition: "center top"} : {backgroundPosition: "center bottom"}}>

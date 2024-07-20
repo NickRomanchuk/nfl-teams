@@ -3,7 +3,8 @@ import PlayerCard from "../PlayerCard/PlayerCard";
 import "./PositionGroup.css"
 import { useContext, useEffect, useState } from "react";
 import { MaddenRatingsContext, TeamContext } from "../../../App";
-import { FidgetSpinner, RotatingLines } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
+import { athleteEndpoints } from "../../../constants/constants";
 
 function PostitionGroup({ label, athletes }) {
     const ratings = useContext(MaddenRatingsContext);
@@ -15,10 +16,11 @@ function PostitionGroup({ label, athletes }) {
     }, [athletes])
 
     async function getPlayerData(id) {
-        const url = await `https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/${id}`;
+        const url = athleteEndpoints + id;
         try {
             const response = await fetch(url);
             const json = await response.json();
+            console.log(json);
             return ({
                 firstName: json["athlete"]["firstName"],
                  lastName: json["athlete"]["lastName"],
@@ -26,6 +28,7 @@ function PostitionGroup({ label, athletes }) {
                       exp: json["athlete"]["displayExperience"] == "Rookie" ? "Rk" : json["athlete"]["displayExperience"].split(" ")[0],
                    status: json["athlete"]["injuries"] ? json["athlete"]["injuries"][0]["type"]["abbreviation"] : null,
                    number: json["athlete"]["jersey"] ? `#${json["athlete"]["jersey"]}` : 'NA',
+                 headshot: json["athlete"]["headshot"] ? json["athlete"]["headshot"]["href"] : null
             })
         } catch (error) {
             console.error(`Could not get data for player id: ${id}`, error.message);
