@@ -13,7 +13,7 @@ div {
 }
 
 .playerModal {
-    z-index: 10010;
+    z-index: 10001;
     width: 30%;
     min-width: 825px;
     position: absolute;
