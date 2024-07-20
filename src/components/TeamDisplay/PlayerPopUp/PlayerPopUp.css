@@ -1,0 +1,125 @@
+div {
+    max-width: none !important;
+}
+.modal-content {
+    border: 3px solid black;
+    box-shadow: rgba(0, 0, 0, 0.5) 3px 2px 6px;
+    border-radius: 5px;
+}
+
+.playerModal {
+    z-index: 10010;
+    width: 30%;
+    min-width: 825px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.playerPopHeader {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+    border-radius: 2px 2px 0 0;
+    border-bottom: 3px solid black;
+}
+
+.titleCol {
+    font-weight: bolder;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+.row {
+    margin: 0px;
+}
+
+.nameRow, .overallRow {
+    line-height: 32px;
+    font-size: 32px;
+}
+
+.numberRow {
+    font-size: 18px; 
+    line-height: 18px;
+}
+
+.playerHeadshot {
+    width: 100%;
+}
+
+.overallCol {
+    padding: 0 1%;
+}
+
+.overallContainer {
+    padding: 10% 5%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.5) 3px 2px 6px;
+}
+
+.overallRow, .textRow {
+    justify-content: center;
+    color: black;
+}
+
+.textRow {
+    font-size: 14px; 
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.overallRow {
+    text-shadow: 1px 1px 2px black;
+}
+
+.profileSection {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 3px 2px 6px;
+    border: 1px solid white;
+}
+
+.profileLabel{
+    text-align: right;
+    font-weight: bolder;
+    font-size: 20px;
+    text-shadow: 1.5px 1.5px 3px black;
+    width: 50%;
+    color: white;
+}
+
+.profileData{
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    text-shadow: 0.5px 0.5px 1px black;
+}
+
+.profileCol {
+  padding: 0;
+}
+
+.statsTable {
+    box-shadow: rgba(0, 0, 0, 0.5) 3px 2px 6px;
+}
+
+.tableHeader, .tableRow {
+    color: white !important;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.tableRow {
+    filter: brightness(125%);
+    text-shadow: 0.5px 0.5px 1px black;
+}
+
+.tableHeader {
+    font-weight: bolder;
+    text-shadow: 1.5px 1.5px 3px black;
+}
+
+
+

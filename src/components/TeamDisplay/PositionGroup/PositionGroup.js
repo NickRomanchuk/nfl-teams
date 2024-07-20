@@ -20,15 +20,22 @@ function PostitionGroup({ label, athletes }) {
         try {
             const response = await fetch(url);
             const json = await response.json();
-            console.log(json);
             return ({
                 firstName: json["athlete"]["firstName"],
                  lastName: json["athlete"]["lastName"],
                  fullName:  json["athlete"]["displayName"],
-                      exp: json["athlete"]["displayExperience"] == "Rookie" ? "Rk" : json["athlete"]["displayExperience"].split(" ")[0],
-                   status: json["athlete"]["injuries"] ? json["athlete"]["injuries"][0]["type"]["abbreviation"] : null,
+                      exp: json["athlete"]["displayExperience"],
+                   status: json["athlete"]["injuries"] ? json["athlete"]["injuries"][0]["status"] : "Active",
+               statusAbbr: json["athlete"]["injuries"] ? json["athlete"]["injuries"][0]["type"]["abbreviation"] : null,
                    number: json["athlete"]["jersey"] ? `#${json["athlete"]["jersey"]}` : 'NA',
-                 headshot: json["athlete"]["headshot"] ? json["athlete"]["headshot"]["href"] : null
+                 headshot: json["athlete"]["headshot"] ? json["athlete"]["headshot"]["href"] : null,
+                 position: label.replace(/[0-9]/g, '').toUpperCase(),
+                  college: json["athlete"]["collegeTeam"] ? json["athlete"]["collegeTeam"]["location"] : "NA",
+                      age: json["athlete"]["age"] ? json["athlete"]["age"] : "NA",
+                   height: json["athlete"]["displayHeight"] ? json["athlete"]["displayHeight"] : "NA",
+                   weight: json["athlete"]["displayWeight"] ? json["athlete"]["displayWeight"] : "NA",
+           draftSelection: json["athlete"]["displayDraft"] ? json["athlete"]["displayDraft"].split(" ").slice(1).join(' ') : "NA",
+                    stats: json["athlete"]["statsSummary"] ? json["athlete"]["statsSummary"]["statistics"] : null
             })
         } catch (error) {
             console.error(`Could not get data for player id: ${id}`, error.message);
