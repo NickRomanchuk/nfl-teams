@@ -1,61 +1,27 @@
-import { MaddenRatingsContext, TeamContext } from "../../../App";
 import "./PlayerCard.css"
-import { useContext, useEffect, useState } from "react";
 
-function PlayerCard(props) {
-    const ratings = useContext(MaddenRatingsContext);
-    const team = useContext(TeamContext);
-    const [playerData, setPlayerData] = useState(null)
-
-    async function getPlayerData() {
-        const url = await `https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/${props.playerId}`;
-        try {
-            const response = await fetch(url);
-            const json = await response.json();
-            json.overall = ratings.find((player) => player["name"] === json["athlete"]["displayName"])
-            if (json["athlete"]["displayExperience"] == "Rookie") {
-                json["athlete"]["displayExperience"] = "Rk"
-            } else {
-                json["athlete"]["displayExperience"] = json["athlete"]["displayExperience"].split(" ")[0]
-            }
-            //console.log(json)
-            setPlayerData(json)
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
-
-    useEffect(() => {
-        if (props.playerId) {
-            getPlayerData();
-        }
-    }, [props])
-
+function PlayerCard({player, length, color, index}) {
     return (
-        <>
-            {playerData && team && ratings &&
-                <div className="playerCard" style={{top: `${props.index * (35 / (props.length-1))}%`, 
-                                                    backgroundImage: `linear-gradient(120deg, ${team.color} 0%, #FFFFFF 100%)`}}>
-                    <div className="playerHeader" style={{backgroundColor: `${team.color}`}}>
-                        {playerData["athlete"]["firstName"][0] + ". " + playerData["athlete"]["lastName"]}
+                <div className="playerCard" style={{top: `${index * (35 / (length-1))}%`, 
+                                                    backgroundImage: `linear-gradient(120deg, ${color} 0%, #FFFFFF 100%)`}}>
+                    <div className="playerHeader" style={{backgroundColor: `${color}`}}>
+                        {player.firstName[0] + ". " + player.lastName}
                     </div>
-                    <div className="playerBody" style={{backgroundImage: `url(${Object.hasOwn(playerData["athlete"], "headshot") ? playerData["athlete"]["headshot"]["href"] : null})`}}>
+                    <div className="playerBody" style={{}}>
                         <p className="playerNumber">
-                            {playerData["athlete"]["jersey"] ? `#${playerData["athlete"]["jersey"]}` : 'NA'}
+                            {player.number}
                         </p>
                         <p className="playerExperience">
-                            {playerData["athlete"]["displayExperience"]}
+                            {player.exp}
                         </p>
-                        <p className="playerOverall" style={{color: `${team.color}`}}>
-                            {playerData["overall"] ? playerData["overall"]["overall"] : "NA"}
+                        <p className="playerOverall" style={{color: `${color}`}}>
+                            {player.overall}
                         </p>
                         <p className="playerStatus">
-                            {playerData["athlete"]["injuries"] ? playerData["athlete"]["injuries"][0]["type"]["abbreviation"] : ""}
+                            {player.status}
                         </p>
                     </div>
                 </div>
-            }
-        </>
     )
 }
 

@@ -76,7 +76,7 @@ function App() {
           )}
         </Col>
         <Col className="teams d-flex flex-column">
-          <TeamContext.Provider value={ratings}>
+          <MaddenRatingsContext.Provider value={ratings}>
             <TeamContext.Provider value={selectedTeams.homeTeam}>
               <Row className="top">
                 <TeamDisplay home={true}/>
@@ -87,7 +87,7 @@ function App() {
                 <TeamDisplay home={false}/>
               </Row>
             </TeamContext.Provider>
-          </TeamContext.Provider>
+          </MaddenRatingsContext.Provider>
         </Col>
       </Row>
     </div>
