@@ -34,19 +34,19 @@ function PlayerPopUp( {showPopUp, setShowPopUp, player, color} ) {
                     </div>
                 </Col>    
             </Modal.Header>
-            <Modal.Body className="playerPopBody" style={{backgroundImage: `linear-gradient(35deg, ${color} -20%, #FFFFFF 90%)`}}>
+            <Modal.Body style={{backgroundImage: `linear-gradient(35deg, ${color} -20%, #FFFFFF 90%)`}}>
                 <Row className="row">
                     <h2 className="titleCol">
                         PLAYER PROFILE
                     </h2>
                     <section className="profileSection" style={{backgroundColor: `${color}`}}>
                         <Row className="row">
-                            <Col className="profileCol">
+                            <Col className="p-0">
                                 <Row className="row"><Col className="profileLabel">{"HEIGHT: "}</Col> <Col className="profileData">{player.height}</Col></Row>
                                 <Row className="row"><Col className="profileLabel">{"WEIGHT: "}</Col> <Col className="profileData">{player.weight}</Col></Row>
                                 <Row className="row"><Col className="profileLabel">{"AGE: "}</Col> <Col className="profileData">{player.age + " years"}</Col></Row>
                             </Col>
-                            <Col className="profileCol">
+                            <Col className="p-0">
                                 <Row className="row"><Col className="profileLabel">{"EXPERIENCE: "}</Col> <Col className="profileData">{player.exp}</Col></Row>
                                 <Row className="row"><Col className="profileLabel">{"COLLEGE: "}</Col> <Col className="profileData">{player.college}</Col></Row>
                                 <Row className="row"><Col className="profileLabel">{"DRAFT: "}</Col> <Col className="profileData">{player.draftSelection}</Col></Row>
@@ -71,8 +71,7 @@ function PlayerPopUp( {showPopUp, setShowPopUp, player, color} ) {
                             <tbody>
                                 <tr>
                                     {player.stats.map((stat, key) =>
-                                        <th style={{backgroundColor: `${color}`}} className="tableRow" key={key}>{stat.displayValue + ` (${stat.rankDisplayValue
-                                        })`}</th>
+                                        <th className="tableRow" key={key}>{stat.displayValue + ` (${stat.rankDisplayValue ? stat.rankDisplayValue : "NA"})`}</th>
                                     )}
                                 </tr>
                             </tbody>

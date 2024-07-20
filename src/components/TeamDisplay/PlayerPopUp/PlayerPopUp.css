@@ -1,6 +1,11 @@
 div {
     max-width: none !important;
 }
+
+.row {
+    margin: 0px;
+}
+
 .modal-content {
     border: 3px solid black;
     box-shadow: rgba(0, 0, 0, 0.5) 3px 2px 6px;
@@ -24,14 +29,14 @@ div {
     border-bottom: 3px solid black;
 }
 
+.playerHeadshot {
+    width: 100%;
+}
+
 .titleCol {
     font-weight: bolder;
     color: white;
     text-shadow: 2px 2px 4px black;
-}
-
-.row {
-    margin: 0px;
 }
 
 .nameRow, .overallRow {
@@ -44,12 +49,8 @@ div {
     line-height: 18px;
 }
 
-.playerHeadshot {
-    width: 100%;
-}
-
 .overallCol {
-    padding: 0 1%;
+    padding: 0 3%;
 }
 
 .overallContainer {
@@ -81,7 +82,7 @@ div {
     border: 1px solid white;
 }
 
-.profileLabel{
+.profileLabel {
     text-align: right;
     font-weight: bolder;
     font-size: 20px;
@@ -90,15 +91,11 @@ div {
     color: white;
 }
 
-.profileData{
+.profileData {
     font-weight: bold;
     font-size: 20px;
     color: white;
     text-shadow: 0.5px 0.5px 1px black;
-}
-
-.profileCol {
-  padding: 0;
 }
 
 .statsTable {
@@ -106,17 +103,17 @@ div {
 }
 
 .tableHeader, .tableRow {
-    color: white !important;
     text-align: center;
     border: 1px solid white;
 }
 
 .tableRow {
+    color: black !important;
     filter: brightness(125%);
-    text-shadow: 0.5px 0.5px 1px black;
 }
 
 .tableHeader {
+    color: white !important;
     font-weight: bolder;
     text-shadow: 1.5px 1.5px 3px black;
 }
